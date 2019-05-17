@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace my_next_app.Controllers
+namespace JGCPhoneList.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
