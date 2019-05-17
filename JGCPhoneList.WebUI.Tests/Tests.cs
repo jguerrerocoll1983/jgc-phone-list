@@ -1,8 +1,7 @@
-using NUnit.Framework;
-using Rhino.Mocks;
-
-namespace Tests
+namespace JGCPhoneList.WebUI.Tests
 {
+    using NUnit.Framework;
+
     public class Tests
     {
         [SetUp]
