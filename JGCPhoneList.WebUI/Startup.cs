@@ -1,3 +1,6 @@
+using JGCPhoneList.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 namespace JGCPhoneList.WebUI
 {
     using Microsoft.AspNetCore.Builder;
@@ -20,6 +23,9 @@ namespace JGCPhoneList.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<IJgcPhoneListDbContext, JgcPhoneListDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("JGCPhoneListDatabase")));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

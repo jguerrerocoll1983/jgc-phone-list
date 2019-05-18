@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public interface IJgcPhoneListDataContext
+    public interface IJgcPhoneListDbContext
     {
         DbSet<Manufacturer> Manufacturers { get; set; }
         DbSet<OperativeSystem> OperativeSystems { get; set; }

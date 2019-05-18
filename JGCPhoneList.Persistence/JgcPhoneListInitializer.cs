@@ -10,11 +10,11 @@ namespace JGCPhoneList.Persistence
 
     public class JgcPhoneListInitializer
     {
-        private Dictionary<int, Color> _colors = new Dictionary<int, Color>();
-        private Dictionary<int, Image> _images = new Dictionary<int, Image>();
-        private Dictionary<int, Manufacturer> _manufacturers = new Dictionary<int, Manufacturer>();
-        private Dictionary<int, OperativeSystem> _operativeSystems = new Dictionary<int, OperativeSystem>();
-        private Dictionary<int, Phone> _phones = new Dictionary<int, Phone>();
+        private List<Color> _colors = new List<Color>();
+        private List<Image> _images = new List<Image>();
+        private List<Manufacturer> _manufacturers = new List<Manufacturer>();
+        private List<OperativeSystem> _operativeSystems = new List<OperativeSystem>();
+        private List<Phone> _phones = new List<Phone>();
 
         public static void Initialize(JgcPhoneListDbContext context)
         {
@@ -24,12 +24,20 @@ namespace JGCPhoneList.Persistence
 
         private void SeedEverything(JgcPhoneListDbContext context)
         {
+            // TODO: Remove EnsureDeleted, just added to test database creation
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            if (EnumerableExtensions.Any(context.Phones))
-                return;
+            if (context.Phones.Any())
+            {
+                return; 
+            }
 
             SeedColors(context);
+            SeedImages(context);
+            SeedManufacturers(context);
+            SeedOperativeSystem(context);
+            SeedPhones(context);
         }
 
         private void SeedColors(JgcPhoneListDbContext context)
@@ -57,7 +65,7 @@ namespace JGCPhoneList.Persistence
             context.Colors.AddRange(colors);
             context.SaveChanges();
 
-            _colors = context.Colors.ToDictionary(c => c.ColorId);
+            _colors = context.Colors.ToList();
         }
 
         private void SeedImages(JgcPhoneListDbContext context)
@@ -79,7 +87,7 @@ namespace JGCPhoneList.Persistence
             context.Images.AddRange(images);
             context.SaveChanges();
 
-            _images = context.Images.ToDictionary(c => c.ImageId);
+            _images = context.Images.ToList();
         }
 
         private void SeedManufacturers(JgcPhoneListDbContext context)
@@ -95,21 +103,21 @@ namespace JGCPhoneList.Persistence
             context.Manufacturers.AddRange(manufacturers);
             context.SaveChanges();
 
-            _manufacturers = context.Manufacturers.ToDictionary(m => m.ManufacturerId);
+            _manufacturers = context.Manufacturers.ToList();
         }
 
         private void SeedOperativeSystem(JgcPhoneListDbContext context)
         {
             var operativeSystem = new[]
             {
-                new OperativeSystem {Name = "iOS", LogoPath = "logos/iOS.png", Url ="www.apple.com/ios/", Manufacturer = context.Manufacturers.Single(m => m.Name == "Apple" ), Description = "iOS (formerly iPhone OS) is a mobile operating system created and developed by Apple Inc. exclusively for its hardware. It is the operating system that presently powers many of the company's mobile devices, including the iPhone, iPad, and iPod Touch. It is the second most popular mobile operating system globally after Android."},
-                new OperativeSystem {Name = "Android", LogoPath = "/logos/android.png", Url ="www.android.com", Manufacturer = context.Manufacturers.Single(m => m.Name == "Google"), Description = "Android is a mobile operating system developed by Google. It is based on a modified version of the Linux kernel and other open source software, and is designed primarily for touchscreen mobile devices such as smartphones and tablets. In addition, Google has further developed Android TV for televisions, Android Auto for cars, and Wear OS for wrist watches, each with a specialized user interface. Variants of Android are also used on game consoles, digital cameras, PCs and other electronics."},
+                new OperativeSystem {Name = "iOS", LogoPath = "logos/iOS.png", Url ="www.apple.com/ios/", Manufacturer = context.Manufacturers.First(m => m.Name == "Apple" ), Description = "iOS (formerly iPhone OS) is a mobile operating system created and developed by Apple Inc. exclusively for its hardware. It is the operating system that presently powers many of the company's mobile devices, including the iPhone, iPad, and iPod Touch. It is the second most popular mobile operating system globally after Android."},
+                new OperativeSystem {Name = "Android", LogoPath = "/logos/android.png", Url ="www.android.com", Manufacturer = context.Manufacturers.First(m => m.Name == "Google"), Description = "Android is a mobile operating system developed by Google. It is based on a modified version of the Linux kernel and other open source software, and is designed primarily for touchscreen mobile devices such as smartphones and tablets. In addition, Google has further developed Android TV for televisions, Android Auto for cars, and Wear OS for wrist watches, each with a specialized user interface. Variants of Android are also used on game consoles, digital cameras, PCs and other electronics."},
             };
 
             context.OperativeSystems.AddRange(operativeSystem);
             context.SaveChanges();
 
-            _operativeSystems = context.OperativeSystems.ToDictionary(o => o.OperativeSystemId);
+            _operativeSystems = context.OperativeSystems.ToList();
         }
 
         private void SeedPhones(JgcPhoneListDbContext context)

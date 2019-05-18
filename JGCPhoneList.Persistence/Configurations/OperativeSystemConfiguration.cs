@@ -20,8 +20,6 @@
                 .HasColumnType("ntext");
 
             builder.Property(e => e.Url).HasMaxLength(100);
-
-            builder.Property(e => e.Manufacturer).IsRequired();
         }
     }
 }

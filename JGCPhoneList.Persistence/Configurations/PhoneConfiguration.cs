@@ -24,10 +24,6 @@
 
             builder.Property(e => e.Resolution)
                 .HasMaxLength(50);
-
-            builder.Property(e => e.Manufacturer).IsRequired();
-
-            builder.Property(e => e.OperativeSystem).IsRequired();
         }
     }
 }

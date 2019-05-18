@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[Manufacturer]
 	CONSTRAINT [PK_Manufacturer] PRIMARY KEY CLUSTERED ([ManufacturerId] ASC)
 );
 
-CREATE TABLE [OperativeSystem]
+CREATE TABLE [dbo].[OperativeSystem]
 (
 	[OperativeSystemId]	INT				NOT NULL	IDENTITY(1,1),
 	[Name]				NVARCHAR(50)	NOT NULL,

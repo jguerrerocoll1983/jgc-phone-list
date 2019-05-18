@@ -4,7 +4,7 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class JgcPhoneListDbContext : DbContext, IJgcPhoneListDataContext
+    public class JgcPhoneListDbContext : DbContext, IJgcPhoneListDbContext
     {
         public JgcPhoneListDbContext(DbContextOptions<JgcPhoneListDbContext> options)
             : base(options)
