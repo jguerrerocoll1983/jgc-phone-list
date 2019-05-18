@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace JGCPhoneList.Domain.Entities
+﻿namespace JGCPhoneList.Domain.Entities
 {
+    using System.Collections.Generic;
+
     public class Phone
     {
         public Phone()
         {
-            Colors = new HashSet<Color>();
-            Images = new HashSet<Image>();
+            PhoneColors = new HashSet<PhoneColors>();
+            PhoneImages = new HashSet<PhoneImages>();
         }
 
         public int PhoneId { get; set; }
@@ -24,7 +24,7 @@ namespace JGCPhoneList.Domain.Entities
         public Manufacturer Manufacturer { get; set; }
         public OperativeSystem OperativeSystem { get; set; }
 
-        public ICollection<Color> Colors { get; set; }
-        public ICollection<Image> Images { get; set; }
+        public ICollection<PhoneColors> PhoneColors { get; set; }
+        public ICollection<PhoneImages> PhoneImages { get; set; }
     }
 }

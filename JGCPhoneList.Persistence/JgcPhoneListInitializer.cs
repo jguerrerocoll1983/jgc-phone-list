@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore.Internal;
-
-namespace JGCPhoneList.Persistence
+﻿namespace JGCPhoneList.Persistence
 {
     using JGCPhoneList.Domain.Entities;
 
+    using System;
+    using System.Linq;
     using System.Collections.Generic;
 
     public class JgcPhoneListInitializer
@@ -15,7 +13,10 @@ namespace JGCPhoneList.Persistence
         private List<Manufacturer> _manufacturers = new List<Manufacturer>();
         private List<OperativeSystem> _operativeSystems = new List<OperativeSystem>();
         private List<Phone> _phones = new List<Phone>();
-
+        private List<PhoneImages> _phoneImages;
+        private List<PhoneColors> _phoneColors;
+        private Random _rand;
+        
         public static void Initialize(JgcPhoneListDbContext context)
         {
             var initializer = new JgcPhoneListInitializer();
@@ -33,11 +34,15 @@ namespace JGCPhoneList.Persistence
                 return; 
             }
 
+            _rand = new Random();
+
             SeedColors(context);
             SeedImages(context);
             SeedManufacturers(context);
             SeedOperativeSystem(context);
             SeedPhones(context);
+            SeedPhoneColors(context);
+            SeedPhoneImages(context);
         }
 
         private void SeedColors(JgcPhoneListDbContext context)
@@ -137,30 +142,78 @@ namespace JGCPhoneList.Persistence
 
             var prices = new[] {120, 180, 240, 300, 500, 650, 800};
 
-            var phones = new List<Phone>();
-            var rand = new Random();
+            _phones = new List<Phone>();
             for (var i = 0; i < 50; i++)
             {
-                var colors = new List<Color> { _colors[rand.Next(_colors.Count)], _colors[rand.Next(_colors.Count) ] };
-                var images = new List<Image> { _images[rand.Next(_images.Count)], _images[rand.Next(_images.Count)] };
-                var manufacturer = _manufacturers[rand.Next(_manufacturers.Count)];
+                var manufacturer = _manufacturers[_rand.Next(_manufacturers.Count)];
                 var modelSuffixes = new[] { "RTX", "Galaxy", "Planet", "ST", "Rocket", "8S", "25R", "MS"};
 
-                phones.Add(new Phone
+                var phone = new Phone
                 {
-                    Battery = batteries[rand.Next(batteries.Length)],
-                    Colors = colors,
-                    Description = descriptions[rand.Next(descriptions.Length)],
-                    Images = images,
+                    Battery = batteries[_rand.Next(batteries.Length)],
+                    Description = descriptions[_rand.Next(descriptions.Length)],
                     Manufacturer = manufacturer,
-                    Model = $"{manufacturer.Name} {modelSuffixes[rand.Next(modelSuffixes.Length)]} Series: {rand.Next(1200, 4000)}",
-                    OperativeSystem = _operativeSystems[rand.Next(_operativeSystems.Count)],
-                    Price = prices[rand.Next(prices.Length)],
-                    RAM = rams[rand.Next(rams.Length)],
-                });
+                    Model =
+                        $"{manufacturer.Name} {modelSuffixes[_rand.Next(modelSuffixes.Length)]} Series: {_rand.Next(1200, 4000)}",
+                    OperativeSystem = _operativeSystems[_rand.Next(_operativeSystems.Count)],
+                    Price = prices[_rand.Next(prices.Length)],
+                    RAM = rams[_rand.Next(rams.Length)],
+                };
+
+                _phones.Add(phone);
             }
 
-            context.Phones.AddRange(phones);
+            context.Phones.AddRange(_phones);
+
+            context.SaveChanges();
+        }
+
+
+        private void SeedPhoneImages(JgcPhoneListDbContext context)
+        {
+            const int randomNumberAmount = 3;
+            var phoneImages = new List<PhoneImages>();
+            foreach (var phone in _phones)
+            {
+                var randomImageIndexes = new List<int>();
+                for (var i = 0; i < randomNumberAmount; i++)
+                {
+                    var randomImageIndex = _rand.Next(_images.Count);
+                    if (!randomImageIndexes.Contains(randomImageIndex))
+                    {
+                        randomImageIndexes.Add(randomImageIndex);
+                        phoneImages.Add(new PhoneImages { Image = _images[randomImageIndex], Phone = phone });
+                    }
+                }
+            }
+
+            _phoneImages = phoneImages.Distinct().ToList();
+            context.PhoneImages.AddRange(_phoneImages);
+
+            context.SaveChanges();
+        }
+
+        private void SeedPhoneColors(JgcPhoneListDbContext context)
+        {
+            const int randomNumberAmount = 3;
+            var phoneColors = new List<PhoneColors>();
+            foreach (var phone in _phones)
+            {
+                var randomColorIndexes = new List<int>();
+                for (var i = 0; i < randomNumberAmount; i++)
+                {
+                    var randomColorIndex = _rand.Next(_colors.Count);
+                    if (!randomColorIndexes.Contains(randomColorIndex))
+                    {
+                        randomColorIndexes.Add(randomColorIndex);
+                        phoneColors.Add(new PhoneColors { Color = _colors[randomColorIndex], Phone = phone });
+                    }
+                }
+            }
+
+            _phoneColors = phoneColors.Distinct().ToList();
+            context.PhoneColors.AddRange(_phoneColors);
+
             context.SaveChanges();
         }
     }

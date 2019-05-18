@@ -16,6 +16,8 @@
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<PhoneImages> PhoneImages { get; set; }
+        public DbSet<PhoneColors> PhoneColors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

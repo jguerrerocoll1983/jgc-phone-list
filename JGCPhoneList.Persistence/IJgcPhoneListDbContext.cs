@@ -13,6 +13,8 @@
         DbSet<Phone> Phones { get; set; }
         DbSet<Color> Colors { get; set; }
         DbSet<Image> Images { get; set; }
+        DbSet<PhoneImages> PhoneImages { get; set; }
+        DbSet<PhoneColors> PhoneColors { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
