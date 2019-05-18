@@ -1,4 +1,7 @@
-﻿namespace JGCPhoneList.Persistence
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace JGCPhoneList.Persistence
 {
     using JGCPhoneList.Domain.Entities;
 
@@ -18,6 +21,16 @@
         public DbSet<Image> Images { get; set; }
         public DbSet<PhoneImages> PhoneImages { get; set; }
         public DbSet<PhoneColors> PhoneColors { get; set; }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+
+        public EntityEntry<Phone> Entry<TEntity>(Phone entity)
+        {
+            return base.Entry<Phone>(entity);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

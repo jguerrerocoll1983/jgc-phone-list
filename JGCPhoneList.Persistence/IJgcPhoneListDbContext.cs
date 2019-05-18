@@ -1,4 +1,6 @@
-﻿namespace JGCPhoneList.Persistence
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace JGCPhoneList.Persistence
 {
     using JGCPhoneList.Domain.Entities;
 
@@ -16,6 +18,10 @@
         DbSet<PhoneImages> PhoneImages { get; set; }
         DbSet<PhoneColors> PhoneColors { get; set; }
 
+
+        Task<int> SaveChangesAsync();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+        EntityEntry<Phone> Entry<TEntity>(Phone entity);
     }
 }

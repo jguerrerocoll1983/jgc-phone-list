@@ -26,7 +26,7 @@
         private void SeedEverything(JgcPhoneListDbContext context)
         {
             // TODO: Remove EnsureDeleted, just added to test database creation
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             if (context.Phones.Any())

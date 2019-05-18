@@ -27,6 +27,8 @@ namespace JGCPhoneList.WebUI
             services.AddDbContext<IJgcPhoneListDbContext, JgcPhoneListDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("JGCPhoneListDatabase")));
 
+            services.AddTransient<IJgcPhoneListDbContext, JgcPhoneListDbContext>();
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
