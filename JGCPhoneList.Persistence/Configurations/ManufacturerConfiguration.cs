@@ -11,6 +11,10 @@
         {
             builder.Property(e => e.ManufacturerId).HasColumnName("ManufacturerId");
 
+            builder.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+
             builder.Property(e => e.Description)
                 .IsRequired()
                 .HasColumnType("ntext");

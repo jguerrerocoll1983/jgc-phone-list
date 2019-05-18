@@ -1,6 +1,7 @@
 CREATE TABLE [dbo].[Manufacturer]
 (
-	[ManufacturerId]			INT				NOT NULL	IDENTITY(1,1),
+	[ManufacturerId]	INT				NOT NULL	IDENTITY(1,1),
+	[Name]				NVARCHAR(50)	NOT NULL,
 	[Description]		NTEXT			NOT NULL,
 	[Year]				INT				NULL,
 	[Country]			NVARCHAR(100)	NULL,
@@ -11,6 +12,7 @@ CREATE TABLE [dbo].[Manufacturer]
 CREATE TABLE [OperativeSystem]
 (
 	[OperativeSystemId]	INT				NOT NULL	IDENTITY(1,1),
+	[Name]				NVARCHAR(50)	NOT NULL,
 	[ManufacturerId]	INT				NOT NULL,
 	[Description]		NTEXT			NOT NULL,
 	[LogoPath]			NVARCHAR(MAX)	NULL,

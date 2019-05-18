@@ -11,6 +11,10 @@
         {
             builder.Property(e => e.OperativeSystemId).HasColumnName("OperativeSystemId");
 
+            builder.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(50);
+
             builder.Property(e => e.Description)
                 .IsRequired()
                 .HasColumnType("ntext");
