@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JGCPhoneList.WebUI.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JGCPhoneList.Persistence", "JGCPhoneList.Persistence\JGCPhoneList.Persistence.csproj", "{5B7B6B09-990E-4CF7-9EE4-F2C4912020F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGCPhoneList.Persistence.Tests", "JGCPhoneList.Persistence.Tests\JGCPhoneList.Persistence.Tests.csproj", "{222C68A9-A11E-41A0-8226-E4B4B5A75137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JGCPhoneList.Persistence.Tests", "JGCPhoneList.Persistence.Tests\JGCPhoneList.Persistence.Tests.csproj", "{222C68A9-A11E-41A0-8226-E4B4B5A75137}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JGCPhoneList.Database", "JGCPhoneList.Database", "{83D84BA7-D432-4F73-BEF2-114A65842CA3}"
+	ProjectSection(SolutionItems) = preProject
+		JGCPhoneList.Database\01 - CreateDatabaseFiles.sql = JGCPhoneList.Database\01 - CreateDatabaseFiles.sql
+		JGCPhoneList.Database\02 - CreateTables.sql = JGCPhoneList.Database\02 - CreateTables.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
