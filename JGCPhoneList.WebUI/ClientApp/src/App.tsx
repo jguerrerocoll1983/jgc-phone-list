@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from "react-redux";
 import { Store } from 'redux';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/Home';
+import Phones from './components/Phones';
 import Layout from './components/Layout';
 
 interface AppProps {
     store: Store<any>;
 }
 
-//const store = configureStore();
 class App extends React.Component<AppProps, {}> {
     render() {
         const { store } = this.props;
@@ -17,7 +17,10 @@ class App extends React.Component<AppProps, {}> {
             <Provider store={store}>
                 <BrowserRouter>
                     <Layout>
-                        <Home />
+                        <Switch>
+                            <Route exact path='/' component={Home} />
+                            <Route path='/Phones' component={Phones} />
+                        </Switch>
                     </Layout>
                 </BrowserRouter>
             </Provider>);
