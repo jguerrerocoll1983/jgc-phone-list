@@ -1,6 +1,7 @@
 ﻿import { createStore, combineReducers } from "redux";
 import { connectRouter } from "connected-react-router"
 import { createBrowserHistory } from 'history';
+
 var history = createBrowserHistory();
 
 const rootReducer = combineReducers({ router: connectRouter(history) });

@@ -11,14 +11,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
 
 import configureStore from "./store";
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 
 var store = configureStore();
-var history = createBrowserHistory();
-ReactDOM.render(<App history={history} store={store} />, document.getElementById('root'));
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
 
 serviceWorker.unregister();
