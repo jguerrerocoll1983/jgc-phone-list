@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Provider } from "react-redux";
+import { Store } from 'redux';
+import { History } from "history"
+import { ConnectedRouter } from 'connected-react-router';
+import Home from './components/Home';
+import Layout from './components/Layout';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+    store: Store<any>;
+    history: History;
+}
+
+//const store = configureStore();
+class App extends React.Component<AppProps, {}> {
+    render() {
+        const { store, history } = this.props;
+        return (
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <Layout>
+                        <Home />
+                    </Layout>
+                </ConnectedRouter>
+            </Provider>);
+    }
 }
 
 export default App;
