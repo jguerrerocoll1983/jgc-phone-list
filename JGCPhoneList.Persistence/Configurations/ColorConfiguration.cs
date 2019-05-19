@@ -18,6 +18,12 @@
             builder.Property(e => e.GValue).IsRequired();
 
             builder.Property(e => e.BValue).IsRequired();
+
+            builder
+                .HasMany(pc => pc.PhoneColors)
+                .WithOne(t => t.Color)
+                .HasForeignKey(pc => pc.ColorId)
+                .HasConstraintName("FK_PhoneColors_ColorId");
         }
     }
 }

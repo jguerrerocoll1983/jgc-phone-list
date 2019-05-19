@@ -24,7 +24,15 @@
         [HttpGet]
         public async Task<IEnumerable<Phone>> GetPhones()
         {
-            var result = await _context.Phones.ToListAsync();
+            var result = await _context.Phones
+                .Include(p => p.OperativeSystem)
+                .Include(p => p.Manufacturer)
+                .Include(p => p.PhoneColors)
+                .Include(p => p.PhoneImages)
+                    .ThenInclude(pi => pi.Image)
+                .Include(p => p.PhoneColors)
+                    .ThenInclude(pi => pi.Color)
+                .ToListAsync();
 
             return result;
         }
@@ -33,8 +41,16 @@
         [HttpGet("{id}")]
         public async Task<ActionResult<Phone>> GetPhone(int id)
         {
-            var phone = await _context.Phones.FindAsync(id);
-
+            var phone = await _context.Phones
+                .Include(p => p.OperativeSystem)
+                .Include(p => p.Manufacturer)
+                .Include(p => p.PhoneColors)
+                .Include(p => p.PhoneImages)
+                .ThenInclude(pi => pi.Image)
+                .Include(p => p.PhoneColors)
+                .ThenInclude(pi => pi.Color)
+                .SingleOrDefaultAsync(p => p.PhoneId == id);
+                
             if (phone == null)
             {
                 return NotFound();

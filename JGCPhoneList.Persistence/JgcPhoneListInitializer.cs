@@ -142,6 +142,10 @@
 
             var prices = new[] {120, 180, 240, 300, 500, 650, 800};
 
+            var storage = new[] { 16, 32, 64, 128, 256 };
+
+            var resolution = new[] {"720", "1080", "2K", "4K", "8K"};
+
             _phones = new List<Phone>();
             for (var i = 0; i < 50; i++)
             {
@@ -158,6 +162,10 @@
                     OperativeSystem = _operativeSystems[_rand.Next(_operativeSystems.Count)],
                     Price = prices[_rand.Next(prices.Length)],
                     RAM = rams[_rand.Next(rams.Length)],
+                    Storage = storage[_rand.Next(storage.Length)],
+                    Year = _rand.Next(1999, 2020),
+                    Weight = _rand.Next(300, 999),
+                    Resolution = resolution[_rand.Next(resolution.Length)]
                 };
 
                 _phones.Add(phone);
