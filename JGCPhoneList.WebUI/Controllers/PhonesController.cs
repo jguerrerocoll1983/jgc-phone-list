@@ -1,17 +1,9 @@
 ﻿namespace JGCPhoneList.WebUI.Controllers
 {
-    using System.Linq;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
     using JGCPhoneList.Application;
     using JGCPhoneList.Application.Phones.Models;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-
-    using JGCPhoneList.Domain.Entities;
-    using JGCPhoneList.Persistence;
 
     [Route("api/[controller]")]
     [ApiController]

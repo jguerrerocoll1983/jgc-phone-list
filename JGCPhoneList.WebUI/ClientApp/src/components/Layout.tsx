@@ -12,17 +12,6 @@ export class LayoutProps implements ILayoutProps {
     navProps: INavProps = new NavProps();
 }
 
-//const Layout: React.SFC<LayoutProps> = (props) => {
-//    return(
-//        <div>
-//            <NavMenu isOpen={true}/>
-//            <Container>
-//                {props.children}
-//            </Container>
-//        </div>);
-//}
-
-
 export default function Layout(props : any) {
     return(
         <div>
