@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JGCPhoneList.Persistence.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JGUPhoneList.Domain", "JGUPhoneList.Domain\JGUPhoneList.Domain.csproj", "{CDA2D4A4-B933-4CC7-BFFC-7858EF8C8E43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JGCPhoneList.Application", "JGCPhoneList.Application\JGCPhoneList.Application.csproj", "{D1BDEE76-558F-4E1B-984E-1196A4D7FBF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CDA2D4A4-B933-4CC7-BFFC-7858EF8C8E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA2D4A4-B933-4CC7-BFFC-7858EF8C8E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA2D4A4-B933-4CC7-BFFC-7858EF8C8E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1BDEE76-558F-4E1B-984E-1196A4D7FBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1BDEE76-558F-4E1B-984E-1196A4D7FBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1BDEE76-558F-4E1B-984E-1196A4D7FBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1BDEE76-558F-4E1B-984E-1196A4D7FBF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

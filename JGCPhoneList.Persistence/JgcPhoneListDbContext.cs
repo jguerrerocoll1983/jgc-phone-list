@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-
-namespace JGCPhoneList.Persistence
+﻿namespace JGCPhoneList.Persistence
 {
+    using System.Threading.Tasks;
+
     using JGCPhoneList.Domain.Entities;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
     public class JgcPhoneListDbContext : DbContext, IJgcPhoneListDbContext
     {

@@ -20,6 +20,11 @@
                 .HasColumnType("ntext");
 
             builder.Property(e => e.Country).HasMaxLength(100);
+
+            builder.HasMany(os => os.OperativeSystems)
+                .WithOne(os => os.Manufacturer)
+                .HasForeignKey(os => os.OperativeSystemId)
+                .HasConstraintName("FK_Manufacturer_OperativeSystemId");
         }
     }
 }

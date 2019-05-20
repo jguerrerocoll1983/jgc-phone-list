@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JGCPhoneList.WebUI
 {
+    using JGCPhoneList.Application;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -27,7 +29,7 @@ namespace JGCPhoneList.WebUI
             services.AddDbContext<IJgcPhoneListDbContext, JgcPhoneListDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("JGCPhoneListDatabase")));
 
-            services.AddTransient<IJgcPhoneListDbContext, JgcPhoneListDbContext>();
+            services.AddTransient<IJgcPhoneListApplicationContext, JgcPhoneListApplicationContext>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

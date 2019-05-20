@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JGCPhoneList.Application\JGCPhoneList.Application.csproj" />
     <ProjectReference Include="..\JGCPhoneList.Persistence\JGCPhoneList.Persistence.csproj" />
   </ItemGroup>
 
