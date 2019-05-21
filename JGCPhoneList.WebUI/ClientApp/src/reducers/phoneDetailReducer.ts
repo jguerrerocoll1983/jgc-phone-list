@@ -20,10 +20,12 @@ export interface IPhoneDetail {
 }
 
 export interface IPhoneDetailState {
+    phoneDetail: IPhoneDetail[]
 }
 
 
 const initialPhoneDetailState: IPhoneDetailState = {
+    phoneDetail: []
 };
 
 

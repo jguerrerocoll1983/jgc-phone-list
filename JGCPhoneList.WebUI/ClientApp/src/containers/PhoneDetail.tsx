@@ -8,14 +8,17 @@ import { StyleSheet, css } from 'aphrodite';
 import { IPhoneDetail } from '../reducers/phoneDetailReducer';
 
 
-interface IProps {
-    phoneDetail: IPhoneDetail;
+export interface IPhoneDetailProps {
+    phoneId: string;
 }
 
-class PhoneDetail extends React.Component<IProps> {
+export interface IPhoneDetailState {
+    phoneDetail: IPhoneDetail[];
+}
 
+class PhoneDetail extends React.Component<IPhoneDetailProps, IPhoneDetailState> {
+    state = { phoneDetail: [] };
     public render() {
-        const { phoneDetail } = this.props;
 
         return (
             <div className="name-container"></div>
@@ -25,7 +28,7 @@ class PhoneDetail extends React.Component<IProps> {
 
 const mapStateToProps = (store: IAppState) => {
     return {
-        phones: store.phoneDetailState.phoneDetails,
+        phones: store.phoneDetailState.phoneDetail,
     };
 };
 

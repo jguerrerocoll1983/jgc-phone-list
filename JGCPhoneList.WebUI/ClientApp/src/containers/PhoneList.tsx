@@ -4,6 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import { IAppState } from '../store';
 import { createBrowserHistory } from 'history'
 import { StyleSheet, css } from 'aphrodite';
+import { Redirect } from 'react-router-dom'
 
 import { IPhone } from '../reducers/phoneReducer';
 
@@ -30,6 +31,12 @@ interface IProps {
 }
 
 class PhoneList extends React.Component<IProps> {
+
+      
+    renderRedirect = (id: number) => {
+        var route = '/Hola';
+        return <Redirect to={route} />
+    }
 
     public render() {
         var history = createBrowserHistory();
@@ -63,7 +70,7 @@ class PhoneList extends React.Component<IProps> {
                     phones &&
                         phones.map(phone => {
                             return (
-                                <Container>
+                                <Container key={phone.phoneId}>
                                     <Row key="phone.phoneid" className={css(styles.tableRow)}>
                                         <Col key="phone.model">
                                             {phone.model}
@@ -84,9 +91,9 @@ class PhoneList extends React.Component<IProps> {
                                             {phone.storage}
                                         </Col>
                                         <Col key="phone.price">
-                                            <Row>
-                                                <Col className={css(styles.textRight)}>{phone.price}</Col>
-                                                <Col><button className="btn btn-light" onClick={() => history.push('/PhoneDetail/' + phone.phoneId)}>Detail</button></Col>
+                                            <Row key="row-price">
+                                                <Col key="row-price-value" className={css(styles.textRight)}>{phone.price}</Col>
+                                                <Col key="row-price-detail"><button className="btn btn-light" onClick={() => this.renderRedirect(phone.phoneId)}>Detail</button></Col>
                                             </Row>
                                         </Col>
                                     </Row>

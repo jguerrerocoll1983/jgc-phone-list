@@ -10,7 +10,7 @@ export enum PhoneDetailActionTypes {
 
 export interface IPhoneDetailGetAction {
     type: PhoneDetailActionTypes.GET;
-    phoneDetail: IPhoneDetail;
+    phoneDetail: IPhoneDetail[];
 }
 
 /* 

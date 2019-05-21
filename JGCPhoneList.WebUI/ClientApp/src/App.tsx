@@ -14,7 +14,7 @@ const App: React.SFC<{}> = () => {
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route path='/Phones' component={PhoneList} />
-                        <Route path='/Phones/:handle' component={PhoneDetail} />
+                        <Route exact path="/Phones/:phoneId" component={PhoneDetail} />
                     </Switch>
                 </Layout>
             </BrowserRouter>
