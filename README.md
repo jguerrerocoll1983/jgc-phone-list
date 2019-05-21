@@ -2,7 +2,7 @@
 Para ejecutar la applicacion:
 - Abrir solucion con visual studio 2019
 - Hacer click en el boton "Play" de visual studio
-- Una base local deberia ser generada automaticamente.
+- Una base local deberia ser generada automaticamente (posiblemente sea la parte mas interesante de esta solucion)
 
 Sobre el estado actual de la aplicacion
 - El listado de telefonos funciona correctamente
