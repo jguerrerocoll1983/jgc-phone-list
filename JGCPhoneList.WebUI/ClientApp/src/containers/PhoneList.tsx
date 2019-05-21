@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { Container, Row, Col } from "reactstrap";
 import { IAppState } from '../store';
+import { createBrowserHistory } from 'history'
 import { StyleSheet, css } from 'aphrodite';
 
 import { IPhone } from '../reducers/phoneReducer';
@@ -29,11 +30,9 @@ interface IProps {
 }
 
 class PhoneList extends React.Component<IProps> {
-    handleClick(e: number) {
-        console.log('this is: ' + e);
-    }
 
     public render() {
+        var history = createBrowserHistory();
         const { phones } = this.props;
         return (
             <div className="name-container" >
@@ -87,7 +86,7 @@ class PhoneList extends React.Component<IProps> {
                                         <Col key="phone.price">
                                             <Row>
                                                 <Col className={css(styles.textRight)}>{phone.price}</Col>
-                                                <Col><button className="btn btn-light" onClick={() => this.handleClick(phone.phoneId)}>Detail</button></Col>
+                                                <Col><button className="btn btn-light" onClick={() => history.push('/PhoneDetail/' + phone.phoneId)}>Detail</button></Col>
                                             </Row>
                                         </Col>
                                     </Row>

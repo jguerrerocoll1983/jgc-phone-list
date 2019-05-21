@@ -1,8 +1,8 @@
 ﻿import { Reducer } from 'redux';
 
-import { PhoneActions, PhoneActionTypes } from '../actions/PhoneActions';
+import { PhoneDetailActions, PhoneDetailActionTypes, } from '../actions/PhoneDetailActions';
 
-export interface IPhone {
+export interface IPhoneDetail {
     phoneId: number,
     model: string,
     description: string,
@@ -19,23 +19,23 @@ export interface IPhone {
     operativeSystemName: string,
 }
 
-export interface IPhoneState {
-    readonly phones: IPhone[];
+export interface IPhoneDetailState {
 }
 
-const initialPhoneState: IPhoneState = {
-    phones: [],
+
+const initialPhoneDetailState: IPhoneDetailState = {
 };
 
-export const phoneReducer: Reducer<IPhoneState, PhoneActions> = (
-    state = initialPhoneState,
+
+export const phoneDetailReducer: Reducer<IPhoneDetailState, PhoneDetailActions> = (
+    state = initialPhoneDetailState,
     action
 ) => {
     switch (action.type) {
-        case PhoneActionTypes.GET_ALL: {
+        case PhoneDetailActionTypes.GET: {
             return {
                 ...state,
-                phones: action.phones,
+                phoneDetail: action.phoneDetail,
             };
         }
         default:
