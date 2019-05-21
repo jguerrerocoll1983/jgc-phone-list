@@ -1,14 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-/* Make the store available to all container 
-components in the application without passing it explicitly */
 import { Provider } from 'react-redux';
 
-// Store type from Redux
 import { Store } from 'redux';
 
-// Import the store function and state
 import configureStore, { IAppState } from './store';
 import { getAllPhones } from './actions/PhoneActions';
 
@@ -16,11 +12,13 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
+
+import 'bootstrap/dist/css/bootstrap.css';
+
 interface IProps {
     store: Store<IAppState>;
 }
 
-// Generate the store
 const store = configureStore();
 store.dispatch(getAllPhones());
 
